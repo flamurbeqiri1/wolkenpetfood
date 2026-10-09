@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wolken Pet Food
 
-## Getting Started
+Marketing site for **Wolken Pet Food** — Next.js (App Router), TypeScript, Tailwind CSS.
 
-First, run the development server:
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Git branches & deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Branch    | Purpose   | Typical URL (after DNS + Vercel)   |
+| --------- | --------- | ---------------------------------- |
+| `develop` | Staging   | `staging.wolkenpetfood.com`        |
+| `main`    | Production | `wolkenpetfood.com` / `www`       |
 
-## Learn More
+Workflow:
 
-To learn more about Next.js, take a look at the following resources:
+1. Work on feature branches, merge into **`develop`**, push → staging updates automatically.
+2. When ready for production, merge **`develop`** → **`main`**, push → production updates automatically.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Connect Vercel to this repo (one-time)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. [Import the GitHub repo in Vercel](https://vercel.com/new).
+2. **Production Branch**: set to `main`.
+3. **Domains**: add `wolkenpetfood.com` (production) and `staging.wolkenpetfood.com`.
+4. In **Project → Settings → Domains**, assign `staging.wolkenpetfood.com` to the **`develop`** branch (Git Branch domain).
+5. Point your domain registrar DNS to Vercel (nameservers or A/CNAME records Vercel shows you).
 
-## Deploy on Vercel
+After that, every `git push` to `develop` or `main` deploys — no manual uploads.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev` — local dev server
+- `npm run build` — production build
+- `npm run start` — run production build locally
+- `npm run lint` — ESLint
